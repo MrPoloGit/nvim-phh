@@ -10,7 +10,7 @@ client, nothing reimplemented here.
 ```lua
 require("phh").setup({
   server_path = "/absolute/path/to/phh-ls/build/phh-ls", -- default: "phh-ls" on PATH
-  registry_path = "/absolute/path/to/phh/registry", -- required, no default
+  registry_path = "/absolute/path/to/phh-data/registry", -- required, no default
   -- grammar_path / actions_grammar_path default to the sibling
   -- tree-sitter-phh / tree-sitter-phh-actions checkouts used throughout
   -- this project; override if yours live elsewhere.
@@ -78,12 +78,12 @@ back the same Mach-O arm64 library already bundled.
 nvim --headless --clean -u NONE -l nvim-phh/test/headless_test.lua
 ```
 
-drives the real plugin against the real corpus (`../phh/corpus/`) inside
+drives the real plugin against the real corpus (`../phh-data/corpus/`) inside
 an actual (headless) Neovim instance, not a mock. For every valid and
 invalid fixture, it opens the file, waits for the real `phh-ls` process to
 attach and respond, and checks: correct `filetype`, the `phh-ls` LSP client
 actually attached, diagnostics matching the corpus's own zero/non-zero
-expectations (`phh/corpus/README.md`), and the tree-sitter highlighter
+expectations (`phh-data/corpus/README.md`), and the tree-sitter highlighter
 active with no parse error. It also exercises `hover` on the `variant`
 field through the same LSP client. **Everything passed on the first real
 run**, 31/31 checks, including every corpus file. `:checkhealth phh` was

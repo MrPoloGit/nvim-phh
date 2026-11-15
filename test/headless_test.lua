@@ -22,7 +22,7 @@ dofile(root .. "/nvim-phh/ftdetect/phh.lua")
 local phh = require("phh")
 phh.setup({
   server_path = root .. "/phh-ls/build/phh-ls",
-  registry_path = root .. "/phh/registry",
+  registry_path = root .. "/phh-data/registry",
 })
 
 check("setup() recorded state", phh._state ~= nil)
@@ -49,9 +49,9 @@ local function open_and_wait(path)
   return bufnr
 end
 
-local valid_files = vim.fn.glob(root .. "/phh/corpus/valid/*.phh", false, true)
-vim.list_extend(valid_files, vim.fn.glob(root .. "/phh/corpus/valid/*.phhs", false, true))
-local invalid_files = vim.fn.glob(root .. "/phh/corpus/invalid/*.phh", false, true)
+local valid_files = vim.fn.glob(root .. "/phh-data/corpus/valid/*.phh", false, true)
+vim.list_extend(valid_files, vim.fn.glob(root .. "/phh-data/corpus/valid/*.phhs", false, true))
+local invalid_files = vim.fn.glob(root .. "/phh-data/corpus/invalid/*.phh", false, true)
 
 for _, path in ipairs(valid_files) do
   local bufnr = open_and_wait(path)
